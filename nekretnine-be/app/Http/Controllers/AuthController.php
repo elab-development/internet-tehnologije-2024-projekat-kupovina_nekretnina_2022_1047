@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -23,14 +24,14 @@ class AuthController extends Controller
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
+            'role' => 'buyer'
         ]);
 
        $token = $user->createToken('auth_token')->plainTextToken;
 
-       
        return response()->json([
             'message' => 'Registered successfully',
-            'user' => $user,
+            'user' => new UserResource($user),
             'token' => $token,
        ], 201); 
         
@@ -42,20 +43,21 @@ class AuthController extends Controller
             'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
-
-        if (!Auth::attempt($validated)) {
-            return response()->json(['error' => 'Bad parameters'], 401);
+    
+        if (!Auth::attempt(['email' => $validated['email'], 'password' => $validated['password']])) {
+            return response()->json(['error' => 'Bad credentials'], 401);
         }
-
-        $user = User::where('email', $request['email'])->firstOrFail();
+    
+        $user = User::where('email', $validated['email'])->firstOrFail();
         $token = $user->createToken('auth_token')->plainTextToken;
-
+    
         return response()->json([
             'message' => 'Logged in successfully',
-            'user' => $user,
+            'user' => new UserResource($user),
             'token' => $token,
-        ]);
+        ], 200);
     }
+    
 
    
     public function logout(Request $request)
