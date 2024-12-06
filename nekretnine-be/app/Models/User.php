@@ -35,4 +35,9 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function kupovine()
+    {
+        return $this->hasMany(Kupovina::class);
+    }
+
 }

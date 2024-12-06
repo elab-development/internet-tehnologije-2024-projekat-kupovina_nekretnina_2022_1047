@@ -19,4 +19,9 @@ class Nekretnina extends Model
         'brojSoba',
         'cena',
     ];
+
+    public function kupovine()
+    {
+        return $this->hasMany(Kupovina::class);
+    }
 }
