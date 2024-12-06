@@ -16,7 +16,8 @@ class Kupovina extends Model
         'nacinPlacanja',
         'agent_id',
         'user_id',
-        'nekretnina_id'
+        'nekretnina_id',
+        'status_kupovine'
     ];
 
     public function agent()
