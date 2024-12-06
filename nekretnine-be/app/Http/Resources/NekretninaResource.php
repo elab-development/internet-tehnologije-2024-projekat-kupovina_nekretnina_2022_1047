@@ -23,10 +23,6 @@ class NekretninaResource extends JsonResource
             'brojSoba'=> $this->brojSoba,
             'cena' => $this->cena,
             
-            
-           
-    
-            
         ];
     }
 }
