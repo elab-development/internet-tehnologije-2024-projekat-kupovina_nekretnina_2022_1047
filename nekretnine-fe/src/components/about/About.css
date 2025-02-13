@@ -1,0 +1,99 @@
+.about-container {
+  width: 100%;
+  min-height: 100vh;
+  color: white;
+  font-family: 'Bebas Neue', sans-serif;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* General Styling for Sections */
+.about-section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Text Block with Black Transparent Background */
+.about-content {
+  max-width: 60%;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.6); /* Black transparent background */
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.about-content h1 {
+  font-size: 85px;
+  font-weight: bold;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+}
+
+.about-content p {
+  font-size: 25px;
+  line-height: 1.6;
+  font-weight: bold;
+  font-family: 'Space Grotesk';
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Background Images */
+.who-we-are {
+  background-image: url("../../assets/history.jpg");
+}
+
+.our-goal {
+  background-image: url("../../assets/goal.jpg");
+}
+
+.our-team {
+  background-image: url("../../assets/team.jpg");
+}
+
+.our-results {
+  background-image: url("../../assets/results.jpg");
+}
+
+/* Team Section */
+.team-grid {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 40px;
+}
+
+.team-member {
+  text-align: center;
+}
+
+.team-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; /* Makes the images circular */
+  object-fit: cover;
+  box-shadow: 5px 5px 20px rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.team-image:hover {
+  transform: scale(1.1);
+}
+
+.team-name {
+  font-size: 19px;
+  margin-top: 10px;
+}
+
+.team-role {
+  font-size: 18px;
+  color: #aaa;
+}

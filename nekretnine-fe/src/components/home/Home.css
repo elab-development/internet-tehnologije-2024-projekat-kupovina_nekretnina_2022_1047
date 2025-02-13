@@ -8,6 +8,7 @@
     align-items: center; /* Center it vertically */
     color: white;
     font-family: 'Bebas Neue', sans-serif;
+    overflow-x: hidden !important;
   }
   
   /* Main Content */

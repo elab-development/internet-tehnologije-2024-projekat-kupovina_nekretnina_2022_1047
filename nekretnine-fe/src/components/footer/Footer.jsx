@@ -1,6 +1,7 @@
 import React from 'react';
 import './Footer.css';
 import logo from "../../assets/logo.png";
+import { Link } from 'react-router-dom';
 import { FaFacebookF, FaInstagram, FaPinterestP } from 'react-icons/fa';
 
 const Footer = () => {
@@ -10,12 +11,14 @@ const Footer = () => {
         <p>© 2025 PROPERTIA</p>
       </div>
 
-      <div className="footer-center">
-        <div className="footer-logo">
-          <img src={logo} alt="propertia-logo" className="logo" />
-          <p className="logo-text">PROPERTIA</p>
+      <Link style={{ cursor: 'pointer' }} to="/" className="nav-link-1">
+        <div className="footer-center" style={{ cursor: 'pointer' }}>
+          <div className="footer-logo" style={{ cursor: 'pointer' }}>
+              <img src={logo} alt="propertia-logo" className="logo" style={{ cursor: 'pointer' }}/>
+              <p className="logo-text" style={{ cursor: 'pointer' }}>PROPERTIA</p>
+          </div>
         </div>
-      </div>
+      </Link>
 
       <div className="footer-right">
         <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>

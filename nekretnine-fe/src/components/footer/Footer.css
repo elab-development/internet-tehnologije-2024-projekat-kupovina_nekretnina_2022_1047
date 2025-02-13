@@ -10,6 +10,7 @@
   width: 100%;
   padding: 0 40px;
   font-family: 'Prosto One';
+  overflow-x: hidden !important;
 }
 
 .footer-left {
@@ -50,18 +51,6 @@
   margin-top: 3px;
 }
 
-.footer-language a {
-  text-decoration: none;
-  font-size: 14px;
-  color: rgb(19, 19, 19);
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.footer-language a:hover {
-  color: #788180;
-  transform: scale(1.1);
-}
-
 .footer-right {
   flex: 1;
   display: flex;
@@ -80,4 +69,18 @@
 .footer-right a:hover {
   color: #788180;
   transform: scale(1.1);
+}
+
+.nav-link-1 {
+  cursor: pointer !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  background: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+  transition: none !important;
+}
+
+.nav-link-1:hover {
+  all: unset !important; /* Completely removes any hover effect */
 }
