@@ -1,0 +1,148 @@
+.agents-container {
+  font-family: "Bebas Neue", sans-serif;
+  background-image: url("../../assets/background-agents.jpg");
+  background-size: cover; /* Ensures the image covers the full background */
+  background-position: center; /* Centers the background image */
+  background-repeat: no-repeat; /* Prevents repeating the image */
+  background-attachment: fixed; /* Keeps the image fixed while scrolling */
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+  width: 100%;
+  min-height: 100vh; /* Ensures it takes the full viewport height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+  
+  /* Title */
+  .agents-title {
+    font-size: 85px;
+    font-weight: bold;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+    margin-bottom: 20px;
+  }
+  
+  /* Sorting Dropdown */
+  .sorting-controls {
+    margin-bottom: 20px;
+  }
+  
+  .sorting-controls label {
+    font-family: 'Space Grotesk';
+    font-size: 25px;
+    font-weight: bold;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+    margin-right: 10px;
+  }
+  
+  .sorting-controls select {
+    font-size: 25px;
+    padding: 5px;
+    background: #222;
+    color: white;
+    border: 2px solid #ffffff;
+    font-family: 'Space Grotesk';
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Agent List */
+  .agents-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  /* Agent Card */
+  .agent-card {
+    background: linear-gradient(145deg, #1a1a1a, #262626);
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .agent-card:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Image */
+  .agent-image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: none;
+    margin-bottom: 15px;
+  }
+  
+  /* Agent Info */
+  .agent-info {
+    font-size: 18px;
+  }
+  
+  .agent-info p {
+    color: #aaa;
+    margin: 5px 0;
+  }
+  
+  .view-more {
+    display: inline-block;
+    margin-top: 10px;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid #ffffff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+    font-family: 'Space Grotesk';
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+  }
+  
+  .view-more:hover {
+    background: #c2bfb8;
+    color: #000;
+  }
+  
+  /* Pagination */
+  .pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+  }
+  
+  .pagination button {
+    background: #ffffff;
+    color: #000;
+    border: none;
+    padding: 8px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .pagination button:disabled {
+    background: #555;
+    cursor: not-allowed;
+  }
+  
+  .pagination span {
+    font-size: 20px;
+    color: white;
+  }
+
+  .agent-name {
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+  }
+  
