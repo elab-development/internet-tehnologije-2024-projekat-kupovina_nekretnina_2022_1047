@@ -5,6 +5,7 @@ import "./OurAgents.css";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
+import Button from "../button/Button"; // Import the reusable button
 
 const OurAgents = () => {
   const [agents, setAgents] = useState([]);
@@ -12,7 +13,8 @@ const OurAgents = () => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState("asc");
-  
+  const [searchQuery, setSearchQuery] = useState(""); // New state for search input
+
   const agentsPerPage = 6; // Number of agents per page
 
   useEffect(() => {
@@ -36,9 +38,14 @@ const OurAgents = () => {
       : b.imePrezime.localeCompare(a.imePrezime);
   });
 
+  // Filter Agents by Search Query
+  const filteredAgents = sortedAgents.filter((agent) =>
+    agent.imePrezime.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   // Pagination Logic
-  const totalPages = Math.ceil(sortedAgents.length / agentsPerPage);
-  const paginatedAgents = sortedAgents.slice(
+  const totalPages = Math.ceil(filteredAgents.length / agentsPerPage);
+  const paginatedAgents = filteredAgents.slice(
     (currentPage - 1) * agentsPerPage,
     currentPage * agentsPerPage
   );
@@ -50,40 +57,35 @@ const OurAgents = () => {
   };
 
   // Track used image numbers for men and women to avoid repetition
-const usedMenImages = new Set();
-const usedWomenImages = new Set();
+  const usedMenImages = new Set();
+  const usedWomenImages = new Set();
 
-const getUniqueImageNumber = (gender) => {
-  let randomNum;
+  const getUniqueImageNumber = (gender) => {
+    let randomNum;
+    const usedImages = gender === "male" ? usedMenImages : usedWomenImages;
 
-  // Select appropriate set based on gender
-  const usedImages = gender === "male" ? usedMenImages : usedWomenImages;
+    do {
+      randomNum = Math.floor(Math.random() * 100);
+    } while (usedImages.has(randomNum));
 
-  do {
-    randomNum = Math.floor(Math.random() * 100); // Generates 0-99
-  } while (usedImages.has(randomNum)); // Ensure it's not already used
-
-  usedImages.add(randomNum); // Store used number
-  return randomNum;
-};
+    usedImages.add(randomNum);
+    return randomNum;
+  };
 
   const getGenderBasedAvatar = (name) => {
-    if (!name) return "https://randomuser.me/api/portraits/men/1.jpg"; // Default
-  
-    const firstName = name.split(" ")[0].toLowerCase(); // Extract first name
-  
-    // List of common female first names (expandable)
+    if (!name) return "https://randomuser.me/api/portraits/men/1.jpg";
+
+    const firstName = name.split(" ")[0].toLowerCase();
     const femaleNames = [
-      "ana", "sofia", "maria", "elena", "julia", "laura", "nina", "olga", "iva", "eva", "katarina",
-      "milica", "jelena", "sandra", "daniela", "tamara", "bojana", "destiny", "miss", "mrs.", "ms."
+      "ana", "sofia", "maria", "elena", "julia", "laura", "nina", "olga", "iva", "eva",
+      "katarina", "milica", "jelena", "sandra", "daniela", "tamara", "bojana", "destiny",
+      "miss", "mrs.", "ms."
     ];
-  
-     // If name is in the female list OR ends with vowels commonly found in female names
+
     if (femaleNames.includes(firstName) || /^[aei]$/i.test(firstName.slice(-1))) {
       return `https://randomuser.me/api/portraits/women/${getUniqueImageNumber("female")}.jpg`;
     }
 
-    // Otherwise, assume male
     return `https://randomuser.me/api/portraits/men/${getUniqueImageNumber("male")}.jpg`;
   };
 
@@ -94,6 +96,18 @@ const getUniqueImageNumber = (gender) => {
       {loading && <p className="loading">Loading agents...</p>}
       {error && <p className="error">{error}</p>}
 
+      {/* Search Bar */}
+      <div className="search-bar" style={{width:"500px", fontSize:"30px"}}>
+        <input
+          className="btn-9 search-input"
+          style={{ fontSize:"25px"}}
+          type="text"
+          placeholder="Search by name..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
+
       {/* Sort Dropdown */}
       <div className="sorting-controls">
         <label htmlFor="sort">Sort by Name:</label>
@@ -101,6 +115,7 @@ const getUniqueImageNumber = (gender) => {
           id="sort"
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
+          style={{width:"100px", justifyContent:"center"}}
         >
           <option value="asc">A - Z</option>
           <option value="desc">Z - A</option>
@@ -111,20 +126,24 @@ const getUniqueImageNumber = (gender) => {
       <div className="agents-list">
         {paginatedAgents.map((agent) => (
           <div key={agent.id} className="agent-card">
-            <div className="agent-image" style={{ marginLeft: '70px'}}>
+            <div className="agent-image" style={{ marginLeft: "70px" }}>
               <img
                 src={getGenderBasedAvatar(agent.imePrezime)}
                 alt={agent.imePrezime}
-                onError={(e) => { e.target.src = "/default-agent.jpg"; }}
+                onError={(e) => {
+                  e.target.src = "/default-agent.jpg";
+                }}
               />
             </div>
             <div className="agent-info">
-              <h2 className="agent-name" style={{color:'white'}}>{agent.imePrezime}</h2>
-              <p className="agent-city"> <FaLocationDot style={{color:'white'}}/> {agent.grad}</p>
-              <p className="agent-email"><MdEmail style={{color:'white'}}/> {agent.email}</p>
-              <p className="agent-phone"><FaPhone style={{color:'white'}}/> {agent.telefon}</p>
-              <Link to={`/agents/${agent.id}`} className="view-more">
-                View More
+              <h2 className="agent-name" style={{ color: "white" }}>{agent.imePrezime}</h2>
+              <p className="agent-city" style={{ color: "white" }}><FaLocationDot /> {agent.grad}</p>
+              <p className="agent-email" style={{ color: "white" }}><MdEmail /> {agent.email}</p>
+              <p className="agent-phone" style={{ color: "white" }}><FaPhone /> {agent.telefon}</p>
+
+              {/* View More Button */}
+              <Link to={`/agents/${agent.id}`}>
+                <Button className="btn-45">View More</Button>
               </Link>
             </div>
           </div>
@@ -133,23 +152,23 @@ const getUniqueImageNumber = (gender) => {
 
       {/* Pagination Controls */}
       <div className="pagination">
-        <button
+        <Button
+          className="btn-45"
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          style={{fontSize:"25px", textShadow: "3px 3px 10px rgba(0, 0, 0, 0.7)"}}
         >
           Prev
-        </button>
-        <span  style={{fontSize:"35px", textShadow: "3px 3px 10px rgba(0, 0, 0, 0.7)"}}>
+        </Button>
+        <span style={{ marginTop:"15px", color:"white", fontSize: "35px", textShadow: "3px 3px 10px rgba(0, 0, 0, 0.7)" }}>
           Page {currentPage} of {totalPages}
         </span>
-        <button
+        <Button
+          className="btn-45"
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          style={{fontSize:"25px", textShadow: "3px 3px 10px rgba(0, 0, 0, 0.7)"}}
         >
           Next
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -1,0 +1,82 @@
+.btn-45,
+.btn-45 *,
+.btn-45 :after,
+.btn-45 :before,
+.btn-45:after,
+.btn-45:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+
+.btn-45 {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+  background-color: #fff; /* Default white background */
+  color: #000; /* Default text is black */
+  cursor: pointer;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 100%;
+  font-weight: 900;
+  line-height: 1.5;
+  margin: 0;
+  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+  padding: 1.2rem 3rem;
+  text-transform: uppercase;
+  border: none; /* Black border for contrast */
+  border-radius: 999px;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Ensure the text stays visible before hover */
+.btn-45 span {
+  font-weight: 900;
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Background animation effect */
+.btn-45:after,
+.btn-45:before {
+  background: #000; /* Transition background to black */
+  content: "";
+  height: 100%;
+  left: -100%;
+  position: absolute;
+  top: 0;
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
+  will-change: transform;
+  z-index: 1;
+}
+
+.btn-45:after {
+  background: #333; /* Slightly lighter black */
+  transition-delay: 0.1s;
+}
+
+/* On hover: background slides in, text turns white */
+.btn-45:hover:after,
+.btn-45:hover:before {
+  transform: translateX(100%);
+}
+
+.btn-45:hover span {
+  color: white; /* Text turns white on hover */
+}
+
+/* DISABLED BUTTONS */
+.btn-45:disabled,
+.btn-disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background-color: #ccc !important; /* Greyed out */
+  color: #777 !important;
+  border-color: #777 !important;
+  pointer-events: none; /* Prevent clicks */
+}
