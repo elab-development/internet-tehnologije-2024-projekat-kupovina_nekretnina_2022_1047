@@ -1,31 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useParams, Link } from "react-router-dom";
-import axios from "axios";
-import "./AgentDetail.css";
 import { FaLocationDot, FaPhone } from "react-icons/fa6";
 import { MdEmail, MdMapsHomeWork } from "react-icons/md";
 import { BsFillInfoSquareFill } from "react-icons/bs";
 import Button from "../button/Button"; // Import Button component
+import useAgentDetails from "../../hooks/useAgentDetails"; // Import custom hook
+import "./AgentDetail.css";
 
 const AgentDetail = () => {
   const { id } = useParams();
-  const [agent, setAgent] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8000/api/agents/${id}`)
-      .then((response) => {
-        setAgent(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching agent details:", error);
-        setError("Failed to load agent details.");
-        setLoading(false);
-      });
-  }, [id]);
+  const { agent, loading, error } = useAgentDetails(id);
 
   if (loading) return <div className="loading">Loading agent details...</div>;
   if (error) return <div className="error">{error}</div>;
