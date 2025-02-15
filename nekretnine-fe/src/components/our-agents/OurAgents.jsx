@@ -1,35 +1,19 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./OurAgents.css";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
 import Button from "../button/Button"; // Import the reusable button
+import useAgents from "../../hooks/useAgents"; // Import the custom hook
+import "./OurAgents.css";
 
 const OurAgents = () => {
-  const [agents, setAgents] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { agents, loading, error } = useAgents(); // Use custom hook
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState("asc");
-  const [searchQuery, setSearchQuery] = useState(""); // New state for search input
+  const [searchQuery, setSearchQuery] = useState("");
 
   const agentsPerPage = 6; // Number of agents per page
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/agents")
-      .then((response) => {
-        setAgents(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching agents:", error);
-        setError("Failed to load agents.");
-        setLoading(false);
-      });
-  }, []);
 
   // Sort Agents Alphabetically
   const sortedAgents = [...agents].sort((a, b) => {
@@ -56,51 +40,18 @@ const OurAgents = () => {
     }
   };
 
-  // Track used image numbers for men and women to avoid repetition
-  const usedMenImages = new Set();
-  const usedWomenImages = new Set();
-
-  const getUniqueImageNumber = (gender) => {
-    let randomNum;
-    const usedImages = gender === "male" ? usedMenImages : usedWomenImages;
-
-    do {
-      randomNum = Math.floor(Math.random() * 100);
-    } while (usedImages.has(randomNum));
-
-    usedImages.add(randomNum);
-    return randomNum;
-  };
-
-  const getGenderBasedAvatar = (name) => {
-    if (!name) return "https://randomuser.me/api/portraits/men/1.jpg";
-
-    const firstName = name.split(" ")[0].toLowerCase();
-    const femaleNames = [
-      "ana", "sofia", "maria", "elena", "julia", "laura", "nina", "olga", "iva", "eva",
-      "katarina", "milica", "jelena", "sandra", "daniela", "tamara", "bojana", "destiny",
-      "miss", "mrs.", "ms."
-    ];
-
-    if (femaleNames.includes(firstName) || /^[aei]$/i.test(firstName.slice(-1))) {
-      return `https://randomuser.me/api/portraits/women/${getUniqueImageNumber("female")}.jpg`;
-    }
-
-    return `https://randomuser.me/api/portraits/men/${getUniqueImageNumber("male")}.jpg`;
-  };
+  if (loading) return <div className="loading">Loading agents...</div>;
+  if (error) return <div className="error">{error}</div>;
 
   return (
     <div className="agents-container">
       <h1 className="agents-title">Meet Our Expert Agents</h1>
 
-      {loading && <p className="loading">Loading agents...</p>}
-      {error && <p className="error">{error}</p>}
-
       {/* Search Bar */}
-      <div className="search-bar" style={{width:"500px", fontSize:"30px"}}>
+      <div className="search-bar" style={{ width: "500px", fontSize: "30px" }}>
         <input
           className="btn-9 search-input"
-          style={{ fontSize:"25px"}}
+          style={{ fontSize: "25px" }}
           type="text"
           placeholder="Search by name..."
           value={searchQuery}
@@ -110,12 +61,37 @@ const OurAgents = () => {
 
       {/* Sort Dropdown */}
       <div className="sorting-controls">
-        <label htmlFor="sort">Sort by Name:</label>
+        <label
+          htmlFor="sort"
+          style={{
+            fontFamily: "'Space Grotesk'",
+            fontSize: "25px",
+            fontWeight: "bold",
+            textShadow: "3px 3px 10px rgba(0, 0, 0, 0.7)",
+            marginRight: "10px",
+            color: "white",
+          }}
+        >
+          Sort by Name:
+        </label>
         <select
           id="sort"
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
-          style={{width:"100px", justifyContent:"center"}}
+          style={{
+            fontSize: "25px",
+            padding: "5px",
+            background: "#ffffff",
+            color: "black",
+            border: "none",
+            fontFamily: "'Space Grotesk'",
+            boxShadow: "3px 3px 10px rgba(0, 0, 0, 0.7)",
+            fontWeight: "bold",
+            borderRadius: "5px",
+            cursor: "pointer",
+            width: "100px",
+            justifyContent: "center",
+          }}
         >
           <option value="asc">A - Z</option>
           <option value="desc">Z - A</option>
@@ -128,7 +104,9 @@ const OurAgents = () => {
           <div key={agent.id} className="agent-card">
             <div className="agent-image" style={{ marginLeft: "70px" }}>
               <img
-                src={getGenderBasedAvatar(agent.imePrezime)}
+                src={`https://randomuser.me/api/portraits/${
+                  agent.gender === "female" ? "women" : "men"
+                }/${agent.id % 100}.jpg`}
                 alt={agent.imePrezime}
                 onError={(e) => {
                   e.target.src = "/default-agent.jpg";
@@ -136,10 +114,51 @@ const OurAgents = () => {
               />
             </div>
             <div className="agent-info">
-              <h2 className="agent-name" style={{ color: "white" }}>{agent.imePrezime}</h2>
-              <p className="agent-city" style={{ color: "white" }}><FaLocationDot /> {agent.grad}</p>
-              <p className="agent-email" style={{ color: "white" }}><MdEmail /> {agent.email}</p>
-              <p className="agent-phone" style={{ color: "white" }}><FaPhone /> {agent.telefon}</p>
+              <h2
+                className="agent-name"
+                style={{
+                  color: "white",
+                  textShadow: "3px 3px 10px rgba(0, 0, 0, 0.7)",
+                }}
+              >
+                {agent.imePrezime}
+              </h2>
+              <p
+                className="agent-city"
+                style={{
+                  color: "white",
+                  fontSize: "20px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                }}
+              >
+                <FaLocationDot /> {agent.grad}
+              </p>
+              <p
+                className="agent-email"
+                style={{
+                  color: "white",
+                  fontSize: "20px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                }}
+              >
+                <MdEmail /> {agent.email}
+              </p>
+              <p
+                className="agent-phone"
+                style={{
+                  color: "white",
+                  fontSize: "20px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                }}
+              >
+                <FaPhone /> {agent.telefon}
+              </p>
 
               {/* View More Button */}
               <Link to={`/agents/${agent.id}`}>
@@ -151,7 +170,16 @@ const OurAgents = () => {
       </div>
 
       {/* Pagination Controls */}
-      <div className="pagination">
+      <div
+        className="pagination"
+        style={{
+          marginTop: "20px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "15px",
+        }}
+      >
         <Button
           className="btn-45"
           onClick={() => handlePageChange(currentPage - 1)}
@@ -159,7 +187,14 @@ const OurAgents = () => {
         >
           Prev
         </Button>
-        <span style={{ marginTop:"15px", color:"white", fontSize: "35px", textShadow: "3px 3px 10px rgba(0, 0, 0, 0.7)" }}>
+        <span
+          style={{
+            marginTop: "15px",
+            color: "white",
+            fontSize: "35px",
+            textShadow: "3px 3px 10px rgba(0, 0, 0, 0.7)",
+          }}
+        >
           Page {currentPage} of {totalPages}
         </span>
         <Button
