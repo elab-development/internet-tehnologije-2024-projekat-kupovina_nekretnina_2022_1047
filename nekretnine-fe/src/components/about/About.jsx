@@ -4,12 +4,16 @@ import ceoImage from "../../assets/ceo.jpg"; // Replace with actual images
 import ctoImage from "../../assets/cto.jpg";
 import cfoImage from "../../assets/cfo.jpg";
 import cmoImage from "../../assets/cmo.jpg";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
     <div className="about-container">
       {/* Section 1: Who Are We? */}
       <section className="about-section who-we-are">
+            <nav className="breadcrumbs">
+              <Link to="/">Home</Link> / <span>About Us</span>
+            </nav>
         <div className="about-content">
           <h1>Who Are We?</h1>
           <p>
@@ -44,22 +48,30 @@ const About = () => {
           </p>
           <div className="team-grid">
           <div className="team-member">
-            <img src={ceoImage} alt="CEO" className="team-image" />
+            <div className="team-image">
+              <img src={ceoImage} alt="CEO" />
+            </div>
             <p className="team-name" style={{fontSize:'19px'}}>James Anderson</p>
             <p className="team-role" style={{fontSize:'15px'}}>Chief Executive Officer</p>
           </div>
           <div className="team-member">
-            <img src={ctoImage} alt="CTO" className="team-image" />
+            <div className="team-image">
+              <img src={ctoImage} alt="CTO" />
+            </div>
             <p className="team-name" style={{fontSize:'19px'}}>Sophia Martinez</p>
             <p className="team-role" style={{fontSize:'15px'}}>Chief Technology Officer</p>
           </div>
           <div className="team-member">
-            <img src={cfoImage} alt="CFO" className="team-image" />
+            <div className="team-image">
+              <img src={cfoImage} alt="CFO"/>
+            </div>
             <p className="team-name" style={{fontSize:'19px'}}>Michael Thompson</p>
             <p className="team-role" style={{fontSize:'15px'}}>Chief Financial Officer</p>
           </div>
           <div className="team-member">
-            <img src={cmoImage} alt="CMO" className="team-image" />
+            <div className="team-image">
+             <img src={cmoImage} alt="CMO"/>
+            </div>
             <p className="team-name" style={{fontSize:'19px'}}>Emily Carter</p>
             <p className="team-role" style={{fontSize:'15px'}}>Chief Marketing Officer</p>
           </div>

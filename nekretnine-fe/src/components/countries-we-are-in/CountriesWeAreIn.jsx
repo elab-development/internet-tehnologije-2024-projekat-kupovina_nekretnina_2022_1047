@@ -2,6 +2,7 @@ import React from "react";
 import WorldMap from "../world-map/WorldMap";
 import useCountries from "../../hooks/useCountries"; // Import the custom hook
 import "./CountriesWeAreIn.css";
+import { Link } from "react-router-dom";
 
 const CountriesWeAreIn = () => {
   // Define selected countries (from Europe, America, and Asia)
@@ -19,6 +20,9 @@ const CountriesWeAreIn = () => {
 
   return (
     <div className="countries-container">
+        <nav className="breadcrumbs">
+              <Link to="/">Home</Link> / <span>Our Locations</span>
+        </nav>
       <h1 className="countries-title">Countries We Operate In</h1>
       <div className="countries-list">
         {countries.map((country, index) => (

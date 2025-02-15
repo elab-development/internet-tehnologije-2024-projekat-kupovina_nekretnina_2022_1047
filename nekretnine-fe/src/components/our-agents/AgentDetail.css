@@ -28,17 +28,33 @@
 }
 
 .agent-image {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  object-fit: cover;
-  transition: transform 0.3s ease;
+  position: relative;
+  width: 180px; /* Adjust based on border size */
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.agent-image:hover {
-  transform: scale(1.05);
+.agent-image img {
+  width: 160px; /* Inside size of the agent image */
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: absolute;
+  z-index: 1;
 }
+
+.agent-image::before {
+  content: "";
+  background: url("../../assets/custom-border.png") no-repeat center center;
+  background-size: contain;
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  z-index: 1000;
+}
+
 
 .agent-info {
   margin-top: 20px;
@@ -126,4 +142,25 @@
     text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
     font-weight: bold;
   }
+}
+
+.breadcrumbs {
+  font-size: 50px;
+  margin-bottom: 10px;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+  font-family: "Bebas Neue", sans-serif;
+}
+
+.breadcrumbs a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs span {
+  color: #c7c2c2;
+
 }

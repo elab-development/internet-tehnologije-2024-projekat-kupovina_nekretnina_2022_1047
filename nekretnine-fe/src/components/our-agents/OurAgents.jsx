@@ -45,6 +45,10 @@ const OurAgents = () => {
 
   return (
     <div className="agents-container">
+      <nav className="breadcrumbs">
+        <Link to="/">Home</Link> / <span>Our Agents</span>
+      </nav>
+
       <h1 className="agents-title">Meet Our Expert Agents</h1>
 
       {/* Search Bar */}
@@ -102,7 +106,7 @@ const OurAgents = () => {
       <div className="agents-list">
         {paginatedAgents.map((agent) => (
           <div key={agent.id} className="agent-card">
-            <div className="agent-image" style={{ marginLeft: "70px" }}>
+            <div className="agent-image" style={{ marginLeft: "70px", border:"none" }}>
               <img
                 src={`https://randomuser.me/api/portraits/${
                   agent.gender === "female" ? "women" : "men"

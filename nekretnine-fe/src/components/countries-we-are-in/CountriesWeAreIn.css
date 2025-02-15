@@ -74,3 +74,23 @@
     margin-top: 5px;
   }
   
+  .breadcrumbs {
+    font-size: 50px;
+    margin-bottom: 10px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+    font-family: "Bebas Neue", sans-serif;
+  }
+  
+  .breadcrumbs a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+  
+  .breadcrumbs span {
+    color: #c7c2c2;
+  
+  }

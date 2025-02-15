@@ -74,14 +74,32 @@
     transform: scale(1.05);
   }
   
-  /* Image */
+  .agent-image {
+    position: relative;
+    width: 180px; /* Adjust based on border size */
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
   .agent-image img {
-    width: 150px;
-    height: 150px;
+    width: 120px; /* Inside size of the agent image */
+    height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    border: none;
-    margin-bottom: 15px;
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .agent-image::before {
+    content: "";
+    background: url("../../assets/custom-border.png") no-repeat center center;
+    background-size: contain;
+    position: absolute;
+    width: 135px;
+    height: 135px;
+    z-index: 1000;
   }
   
   /* Agent Info */
@@ -252,3 +270,24 @@
   background: black;
   color: white;
 }
+
+.breadcrumbs {
+  font-size: 50px;
+  margin-bottom: 10px;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+}
+
+.breadcrumbs a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs span {
+  color: #c7c2c2;
+
+}
+

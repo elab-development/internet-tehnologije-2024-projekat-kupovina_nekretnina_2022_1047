@@ -53,13 +53,17 @@ const AgentDetail = () => {
 
   return (
     <div className="agent-detail-container">
+            <nav className="breadcrumbs">
+              <Link to="/">Home</Link> / <Link to="/our-agents">Our Agents</Link> / <span>Agent Details</span>
+            </nav>
       <div className="agent-profile">
+      <div className="agent-image">
         <img
           src={getGenderBasedAvatar(agent.imePrezime)}
           alt={agent.imePrezime}
-          className="agent-image"
           onError={(e) => { e.target.src = "/default-agent.jpg"; }}
         />
+          </div>
         <div className="agent-info">
           <h1 className="agent-name1" style={{ color: "white" }}>{agent.imePrezime}</h1>
           <p className="agent-city1" style={{ color: "white" }}> <FaLocationDot /> {agent.grad}</p>
