@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap  } from "react-leaflet";
+import React, { useEffect, useMemo } from "react";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import "./WorldMap.css";
@@ -36,7 +36,7 @@ const markers = [
   { lat: -15.8267, lng: -47.9218, city: "Brasilia", country: "Brazil" },
 ];
 
-// Property Names
+// Property Names (for Fixed Assignment)
 const propertyNames = [
   "Sunset Villas", "Grand Horizon Suites", "Lakeside Residence",
   "Oceanview Penthouse", "Golden Gate Estates", "Maplewood Manor",
@@ -44,11 +44,14 @@ const propertyNames = [
   "Aurora Apartments", "Harborfront Lofts", "Imperial Plaza"
 ];
 
-const getRandomPropertyName = () => {
-  return propertyNames[Math.floor(Math.random() * propertyNames.length)];
+// Ensure property names are assigned once
+const getFixedPropertyNames = () => {
+  return markers.map((marker, index) => ({
+    ...marker,
+    propertyName: propertyNames[index % propertyNames.length]
+  }));
 };
 
-// Custom Marker Icon
 const customIcon = new L.Icon({
   iconUrl: markerIcon,
   iconSize: [50, 70],
@@ -73,6 +76,9 @@ const CustomZoomControl = () => {
 };
 
 const WorldMap = () => {
+  // Generate fixed property names only once
+  const fixedMarkers = useMemo(getFixedPropertyNames, []);
+
   return (
     <div className="map-container">
       <div className="map-overlay">
@@ -88,23 +94,20 @@ const WorldMap = () => {
         />
 
         {/* Place Multiple City Markers */}
-        {markers.map((marker, index) => {
-          const propertyName = getRandomPropertyName();
-          return (
-            <Marker key={index} position={[marker.lat, marker.lng]} icon={customIcon}>
-              <Popup>
-                <div style={{ textAlign: "center" }}>
-                  <p style={{ fontSize: "18px", fontWeight: "bold", margin: "5px 0" }}>
-                    {propertyName}
-                  </p>
-                  <p style={{ fontSize: "14px", fontStyle: "italic", margin: "0" }}>
-                    {marker.city}, {marker.country}
-                  </p>
-                </div>
-              </Popup>
-            </Marker>
-          );
-        })}
+        {fixedMarkers.map((marker, index) => (
+          <Marker key={index} position={[marker.lat, marker.lng]} icon={customIcon}>
+            <Popup>
+              <div style={{ textAlign: "center" }}>
+                <p style={{ fontSize: "18px", fontWeight: "bold", margin: "5px 0" }}>
+                  {marker.propertyName}
+                </p>
+                <p style={{ fontSize: "14px", fontStyle: "italic", margin: "0" }}>
+                  {marker.city}, {marker.country}
+                </p>
+              </div>
+            </Popup>
+          </Marker>
+        ))}
 
         {/* Custom Zoom Control */}
         <CustomZoomControl />
