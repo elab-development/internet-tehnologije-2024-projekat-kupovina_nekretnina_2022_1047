@@ -7,6 +7,7 @@ import AboutUs from './components/about/About';
 import OurAgents from './components/our-agents/OurAgents';
 import AgentDetail from './components/our-agents/AgentDetail';
 import CountriesWeAreIn from './components/countries-we-are-in/CountriesWeAreIn';
+import BackToTop from './components/back-to-top/BackToTop';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/agents/:id" element={<AgentDetail />} />
           <Route path="/countries-we-are-in" element={<CountriesWeAreIn />} />
         </Routes>
+        <BackToTop />
         <Footer></Footer>
       </BrowserRouter>
     </div>

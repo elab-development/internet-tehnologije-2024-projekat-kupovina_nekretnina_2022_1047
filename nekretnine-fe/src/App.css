@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .App-logo {
@@ -36,4 +37,24 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Hide Vertical Scrollbar but Allow Scrolling */
+::-webkit-scrollbar {
+  width: 0px; /* Set width to 0 to hide */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Make track invisible */
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent; /* Make thumb invisible */
+}
+
+/* Ensure scrolling still works */
+body {
+  overflow-y: scroll; /* Allows scrolling without visible scrollbar */
+  -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
 }
