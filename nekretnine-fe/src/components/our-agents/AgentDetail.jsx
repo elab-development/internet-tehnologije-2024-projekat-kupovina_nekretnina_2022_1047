@@ -3,8 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import { FaLocationDot, FaPhone } from "react-icons/fa6";
 import { MdEmail, MdMapsHomeWork } from "react-icons/md";
 import { BsFillInfoSquareFill } from "react-icons/bs";
-import Button from "../button/Button"; // Import Button component
-import useAgentDetails from "../../hooks/useAgentDetails"; // Import custom hook
+import Button from "../button/Button"; 
+import useAgentDetails from "../../hooks/useAgentDetails"; 
 import "./AgentDetail.css";
 
 const AgentDetail = () => {
@@ -78,7 +78,6 @@ const AgentDetail = () => {
         </div>
       </div>
 
-      {/* Back Button using reusable Button component */}
       <div className="back-to-list">
         <Link to="/our-agents" style={{fontSize:"20px"}}>
           <Button>Back to Agents</Button>

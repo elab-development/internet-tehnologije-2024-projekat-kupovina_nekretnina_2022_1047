@@ -1,6 +1,6 @@
 import React from "react";
 import "./About.css";
-import ceoImage from "../../assets/ceo.jpg"; // Replace with actual images
+import ceoImage from "../../assets/ceo.jpg"; 
 import ctoImage from "../../assets/cto.jpg";
 import cfoImage from "../../assets/cfo.jpg";
 import cmoImage from "../../assets/cmo.jpg";

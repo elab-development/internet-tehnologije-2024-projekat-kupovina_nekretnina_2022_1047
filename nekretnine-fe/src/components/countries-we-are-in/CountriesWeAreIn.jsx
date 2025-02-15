@@ -1,18 +1,17 @@
 import React from "react";
 import WorldMap from "../world-map/WorldMap";
-import useCountries from "../../hooks/useCountries"; // Import the custom hook
+import useCountries from "../../hooks/useCountries"; 
 import "./CountriesWeAreIn.css";
 import { Link } from "react-router-dom";
 
 const CountriesWeAreIn = () => {
-  // Define selected countries (from Europe, America, and Asia)
+
   const selectedCountries = [
-    "Germany", "France", "Italy", // Europe
-    "USA", "Canada", "Brazil", // America
-    "Japan", "South Korea", "India", "China" // Asia
+    "Germany", "France", "Italy", 
+    "USA", "Canada", "Brazil", 
+    "Japan", "South Korea", "India", "China" 
   ];
 
-  // Use custom hook
   const { countries, loading, error } = useCountries(selectedCountries);
 
   if (loading) return <div className="loading">Loading countries...</div>;

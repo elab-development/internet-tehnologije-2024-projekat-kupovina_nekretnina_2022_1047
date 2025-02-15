@@ -3,9 +3,10 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import "./WorldMap.css";
-import markerIcon from "../../assets/Marker.png"; // Ensure correct path
+import markerIcon from "../../assets/Marker.png"; 
 import logo from "../../assets/logo.png"; 
 
+// Lista markera sa geografskim koordinatama i podacima o gradovima i državama
 const markers = [
   { lat: 41.9028, lng: 12.4964, city: "Rome", country: "Italy" },
   { lat: 45.4642, lng: 9.1900, city: "Milan", country: "Italy" },
@@ -36,7 +37,7 @@ const markers = [
   { lat: -15.8267, lng: -47.9218, city: "Brasilia", country: "Brazil" },
 ];
 
-// Property Names (for Fixed Assignment)
+// Imena nekretnina koje se dodeljuju markerima
 const propertyNames = [
   "Sunset Villas", "Grand Horizon Suites", "Lakeside Residence",
   "Oceanview Penthouse", "Golden Gate Estates", "Maplewood Manor",
@@ -44,7 +45,7 @@ const propertyNames = [
   "Aurora Apartments", "Harborfront Lofts", "Imperial Plaza"
 ];
 
-// Ensure property names are assigned once
+// Funkcija koja svakom markeru dodeljuje jedinstveno ime nekretnine
 const getFixedPropertyNames = () => {
   return markers.map((marker, index) => ({
     ...marker,
@@ -52,6 +53,7 @@ const getFixedPropertyNames = () => {
   }));
 };
 
+// Prilagođena ikona markera za mapu
 const customIcon = new L.Icon({
   iconUrl: markerIcon,
   iconSize: [50, 70],
@@ -59,12 +61,12 @@ const customIcon = new L.Icon({
   popupAnchor: [0, -65],
 });
 
-// Custom Zoom Controls
+// Komponenta za prilagođene kontrole zumiranja na mapi
 const CustomZoomControl = () => {
   const map = useMap();
 
   useEffect(() => {
-    map.zoomControl.remove(); // Hide default zoom controls
+    map.zoomControl.remove(); // Uklanja podrazumevane kontrole zumiranja
   }, [map]);
 
   return (
@@ -75,25 +77,26 @@ const CustomZoomControl = () => {
   );
 };
 
+// Glavna komponenta koja prikazuje mapu sa markerima i legendom
 const WorldMap = () => {
-  // Generate fixed property names only once
   const fixedMarkers = useMemo(getFixedPropertyNames, []);
 
   return (
     <div className="map-container">
+      {/* Logo kompanije preko mape */}
       <div className="map-overlay">
         <img src={logo} alt="Propertia Logo" />
         <span>PROPERTIA</span>
       </div>
 
       <MapContainer center={[20, 0]} zoom={2} className="map">
-        {/* Apply USGS Satellite Imagery */}
+        {/* Dodavanje sloja sa satelitskim prikazom */}
         <TileLayer
           url="https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}"
           attribution=""
         />
 
-        {/* Place Multiple City Markers */}
+        {/* Postavljanje markera na mapu sa podacima o lokaciji */}
         {fixedMarkers.map((marker, index) => (
           <Marker key={index} position={[marker.lat, marker.lng]} icon={customIcon}>
             <Popup>
@@ -109,11 +112,11 @@ const WorldMap = () => {
           </Marker>
         ))}
 
-        {/* Custom Zoom Control */}
+        {/* Prilagođene kontrole za zumiranje */}
         <CustomZoomControl />
       </MapContainer>
 
-      {/* Legend */}
+      {/* Legenda sa brojem nekretnina */}
       <div className="map-legend">
         <p><strong>Number of Properties:</strong> <span>{markers.length}</span></p>
       </div>

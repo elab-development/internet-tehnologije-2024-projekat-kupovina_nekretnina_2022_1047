@@ -3,31 +3,31 @@ import { Link } from "react-router-dom";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
-import Button from "../button/Button"; // Import the reusable button
-import useAgents from "../../hooks/useAgents"; // Import the custom hook
+import Button from "../button/Button";
+import useAgents from "../../hooks/useAgents"; 
 import "./OurAgents.css";
 
 const OurAgents = () => {
-  const { agents, loading, error } = useAgents(); // Use custom hook
+  const { agents, loading, error } = useAgents(); 
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState("asc");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const agentsPerPage = 6; // Number of agents per page
+  const agentsPerPage = 6; 
 
-  // Sort Agents Alphabetically
+
   const sortedAgents = [...agents].sort((a, b) => {
     return sortOrder === "asc"
       ? a.imePrezime.localeCompare(b.imePrezime)
       : b.imePrezime.localeCompare(a.imePrezime);
   });
 
-  // Filter Agents by Search Query
+
   const filteredAgents = sortedAgents.filter((agent) =>
     agent.imePrezime.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Pagination Logic
+
   const totalPages = Math.ceil(filteredAgents.length / agentsPerPage);
   const paginatedAgents = filteredAgents.slice(
     (currentPage - 1) * agentsPerPage,
@@ -51,7 +51,6 @@ const OurAgents = () => {
 
       <h1 className="agents-title">Meet Our Expert Agents</h1>
 
-      {/* Search Bar */}
       <div className="search-bar" style={{ width: "500px", fontSize: "30px" }}>
         <input
           className="btn-9 search-input"
@@ -63,7 +62,6 @@ const OurAgents = () => {
         />
       </div>
 
-      {/* Sort Dropdown */}
       <div className="sorting-controls">
         <label
           htmlFor="sort"
@@ -102,7 +100,6 @@ const OurAgents = () => {
         </select>
       </div>
 
-      {/* Agent List */}
       <div className="agents-list">
         {paginatedAgents.map((agent) => (
           <div key={agent.id} className="agent-card">
@@ -164,7 +161,6 @@ const OurAgents = () => {
                 <FaPhone /> {agent.telefon}
               </p>
 
-              {/* View More Button */}
               <Link to={`/agents/${agent.id}`}>
                 <Button className="btn-45">View More</Button>
               </Link>
@@ -173,7 +169,6 @@ const OurAgents = () => {
         ))}
       </div>
 
-      {/* Pagination Controls */}
       <div
         className="pagination"
         style={{
