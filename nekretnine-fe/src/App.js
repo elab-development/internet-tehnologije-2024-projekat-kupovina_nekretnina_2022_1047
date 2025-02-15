@@ -6,6 +6,7 @@ import Home from './components/home/Home';
 import AboutUs from './components/about/About';
 import OurAgents from './components/our-agents/OurAgents';
 import AgentDetail from './components/our-agents/AgentDetail';
+import CountriesWeAreIn from './components/countries-we-are-in/CountriesWeAreIn';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/our-agents" element={<OurAgents />} />
           <Route path="/agents/:id" element={<AgentDetail />} />
+          <Route path="/countries-we-are-in" element={<CountriesWeAreIn />} />
         </Routes>
         <Footer></Footer>
       </BrowserRouter>

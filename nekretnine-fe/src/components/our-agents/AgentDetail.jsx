@@ -92,7 +92,7 @@ const AgentDetail = () => {
 
       {/* Back Button using reusable Button component */}
       <div className="back-to-list">
-        <Link to="/our-agents">
+        <Link to="/our-agents" style={{fontSize:"20px"}}>
           <Button>Back to Agents</Button>
         </Link>
       </div>
