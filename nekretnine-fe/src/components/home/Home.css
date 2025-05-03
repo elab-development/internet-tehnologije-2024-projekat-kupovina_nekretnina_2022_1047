@@ -1,0 +1,45 @@
+.home-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url("../../assets/background.jpg") no-repeat center center/cover;
+    display: flex;
+    justify-content: flex-start; /* Align content to the left */
+    align-items: center; /* Center it vertically */
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  /* Main Content */
+  .content {
+    position: absolute;
+    left: 80px;
+    bottom: 100px;
+    max-width: 900px;
+    text-align: left; /* Explicitly aligns text to the left */
+  }
+  
+  .content h2 {
+    font-size: 45px;
+    font-weight: normal;
+    font-family: 'Space Grotesk';
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  }
+  
+  .content h1 {
+    font-size: 85px;
+    font-weight: bold;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+  }
+  
+  .content p {
+    font-size: 25px;
+    margin-top: 10px;
+    line-height: 1.5;
+    max-width: 800px;
+    text-align: justify;
+    font-family: 'Space Grotesk';
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  }
+  

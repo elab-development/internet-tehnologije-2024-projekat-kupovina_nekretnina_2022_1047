@@ -1,0 +1,134 @@
+.about-container {
+  width: 100%;
+  min-height: 100vh;
+  color: white;
+  font-family: 'Bebas Neue', sans-serif;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* General Styling for Sections */
+.about-section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Text Block with Black Transparent Background */
+.about-content {
+  max-width: 60%;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.6); /* Black transparent background */
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.about-content h1 {
+  font-size: 85px;
+  font-weight: bold;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+}
+
+.about-content p {
+  font-size: 25px;
+  line-height: 1.6;
+  font-weight: bold;
+  font-family: 'Space Grotesk';
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Background Images */
+.who-we-are {
+  background-image: url("../../assets/history.jpg");
+}
+
+.our-goal {
+  background-image: url("../../assets/goal.jpg");
+}
+
+.our-team {
+  background-image: url("../../assets/team.jpg");
+}
+
+.our-results {
+  background-image: url("../../assets/results.jpg");
+}
+
+/* Team Section */
+.team-grid {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 40px;
+}
+
+.team-member {
+  text-align: center;
+}
+
+.team-image {
+  position: relative;
+  width: 180px; /* Adjust based on border size */
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.team-image img{
+  width: 165px; /* Inside size of the agent image */
+  height: 165px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: absolute;
+  z-index: 1;
+}
+
+.team-image::before {
+  content: "";
+  background: url("../../assets/custom-border.png") no-repeat center center;
+  background-size: contain;
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  z-index: 1000;
+}
+
+.team-name {
+  font-size: 19px;
+  margin-top: 10px;
+}
+
+.team-role {
+  font-size: 18px;
+  color: #aaa;
+}
+
+.breadcrumbs {
+  font-size: 50px;
+  margin-bottom: 10px;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+  font-family: "Bebas Neue", sans-serif;
+}
+
+.breadcrumbs a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs span {
+  color: #c7c2c2;
+
+}

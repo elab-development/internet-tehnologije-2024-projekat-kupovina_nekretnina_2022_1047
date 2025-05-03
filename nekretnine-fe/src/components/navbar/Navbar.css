@@ -1,0 +1,65 @@
+.navbar {
+  background: #f9f7f7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 19px;
+  font-family: 'Prosto One';
+  height: 80px; /* Reduce height slightly */
+  width: 100%;
+  padding: 0 30px; /* Ensure proper spacing */
+  box-sizing: border-box;
+  overflow-x: hidden !important;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0; /* Prevents unnecessary shrinking */
+  max-width: 200px; /* Reduce max width so it doesn't take too much space */
+  white-space: nowrap;
+}
+
+.logo {
+  height: 30px; /* Adjust logo size */
+  width: auto;
+  margin-right: 8px; /* Space between logo and text */
+}
+
+.brand-name {
+  font-size: 22px; /* Reduce size slightly */
+  font-weight: bold;
+  color: #000000;
+  text-transform: uppercase;
+  white-space: nowrap; /* Prevents text from wrapping */
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px; /* Reduce spacing slightly */
+  flex-wrap: nowrap; /* Ensure links stay in one line */
+  justify-content: flex-end;
+  flex-grow: 1; /* Allows it to take up remaining space */
+  overflow: hidden;
+}
+
+.nav-link {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 16px; /* Reduce font size slightly */
+  color: #000000;
+  transition: .5s;
+  position: relative;
+  padding: 6px 8px; /* Adjust padding for space efficiency */
+  white-space: nowrap; /* Prevents text from breaking */
+}
+
+.nav-link:hover {
+  color: #CACACA;
+}
+
+.nav-link:active {
+  color: #E6B31E;
+}
