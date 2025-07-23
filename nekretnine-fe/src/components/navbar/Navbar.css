@@ -63,3 +63,52 @@
 .nav-link:active {
   color: #E6B31E;
 }
+/* Navbar.css */
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto; /* push to the right */
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-left: 2rem;
+}
+
+.nav-username {
+  color: #000000;
+  font-size: 1rem;
+}
+
+/* add/replace in Navbar.css */
+
+.logout-button {
+  background: #fff;               /* white background */
+  color: #000;                    /* black text */
+  border: 1px solid #000;         /* black border */
+  border-radius: 20px;            /* pill shape */
+  padding: 4px 12px;              /* comfy click area */
+  font-weight: 700;               /* stand out */
+  margin-left: 1rem;              /* space from name */
+  transition: 0.2s, color 0.2s, transform 0.1s;
+}
+
+.logout-button:hover {
+  background: #000;               /* invert on hover */
+  color: #fff;
+  transform: translateY(-1px);
+  cursor: pointer;
+}
+
+

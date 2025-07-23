@@ -1,3 +1,4 @@
+// src/App.js
 import "./App.css";
 import Footer from "./components/footer/Footer";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
@@ -9,53 +10,66 @@ import AgentDetail from "./components/our-agents/AgentDetail";
 import CountriesWeAreIn from "./components/countries-we-are-in/CountriesWeAreIn";
 import BackToTop from "./components/back-to-top/BackToTop";
 import LoadingScreen from "./components/loading-screen/LoadingScreen";
+import Login from "./components/login/Login";
+import Register from "./components/register/Register";
 import React, { useState, useEffect } from "react";
 
 // Glavna komponenta aplikacije koja upravlja navigacijom i prikazom stranica
 const AppContent = () => {
   // Stanje za praćenje učitavanja (loading)
   const [loading, setLoading] = useState(false);
-  
-  // useLocation prati promene rute kako bi se aktivirao loading efekat pri navigaciji
-  const location = useLocation(); 
+  // Stanje za proveru da li je korisnik autentifikovan
+  const [isAuthenticated, setIsAuthenticated] = useState(!!sessionStorage.getItem("auth_token"));
 
-  // Efekat koji se pokreće pri promeni rute, simulirajući učitavanje
+  const location = useLocation();
+
+  // Loading efekat pri promeni rute
   useEffect(() => {
-    setLoading(true); // Aktivira loading stanje
+    setLoading(true);
     const timer = setTimeout(() => {
-      setLoading(false); // Isključuje loading nakon 3 sekunde
-    }, 3000); 
-
-    return () => clearTimeout(timer); // Čisti tajmer pri promeni rute kako bi se sprečili nepotrebni pozivi
+      setLoading(false);
+    }, 3000);
+    return () => clearTimeout(timer);
   }, [location]);
+
+  // Svake sekunde proveravamo auth_token u sessionStorage
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const tokenExists = !!sessionStorage.getItem("auth_token");
+      setIsAuthenticated(tokenExists);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="App">
-      {/* Prikazuje ekran za učitavanje dok traje loading stanje */}
-      {loading && <LoadingScreen />} 
+      {/* Loading ekran */}
+      {loading && <LoadingScreen />}
 
-      {/* Navigacioni meni */}
-      <Navbar />
+      {/* Navbar se prikazuje samo ako je autentifikovan */}
+      {isAuthenticated && <Navbar />}
 
-      {/* Konfiguracija ruta za navigaciju kroz aplikaciju */}
+      {/* Rute */}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/our-agents" element={<OurAgents />} />
         <Route path="/agents/:id" element={<AgentDetail />} />
         <Route path="/countries-we-are-in" element={<CountriesWeAreIn />} />
       </Routes>
 
-      {/* Dugme za povratak na vrh stranice */}
+      {/* Dugme za skrolovanje na vrh */}
       <BackToTop />
 
-      {/* Footer sekcija */}
-      <Footer />
+      {/* Footer se prikazuje samo ako je autentifikovan */}
+      {isAuthenticated && <Footer />}
     </div>
   );
 };
 
-// Glavna funkcija koja koristi BrowserRouter za omogućavanje navigacije kroz aplikaciju
+// Glavna funkcija koja koristi BrowserRouter za navigaciju
 function App() {
   return (
     <BrowserRouter>
