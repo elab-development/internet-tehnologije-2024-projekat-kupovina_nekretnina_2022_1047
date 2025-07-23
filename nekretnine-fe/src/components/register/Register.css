@@ -67,30 +67,7 @@
   line-height: 1.6;
 }
 
-/* Breadcrumbs u vrhu sekcije */
-.breadcrumbs {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 2;               /* iznad maske i pozadine */
-  font-size: 1rem;
-  background: #fff;         /* bela pozadina */
-  color: #000;              /* crni tekst */
-  padding: 6px 12px;
-  border-radius: 4px;
-  text-shadow: none;
-}
-.breadcrumbs a {
-  color: #000;
-  text-decoration: none;
-  margin-right: 0.5rem;
-}
-.breadcrumbs a:hover {
-  text-decoration: underline;
-}
-.breadcrumbs span {
-  color: #555;
-}
+
 
 /* Grid za tim */
 .team-grid {

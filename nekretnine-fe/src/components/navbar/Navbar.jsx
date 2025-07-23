@@ -49,6 +49,7 @@ const Navbar = () => {
         <Link to="/about" className="nav-link">About Us</Link>
         <Link to="/our-agents" className="nav-link">Our Agents</Link>
         <Link to="/countries-we-are-in" className="nav-link">Our Locations</Link>
+        <Link to="/properties" className="nav-link">Properties</Link>
       </div>
 
       {user && (

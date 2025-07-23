@@ -12,6 +12,7 @@ import BackToTop from "./components/back-to-top/BackToTop";
 import LoadingScreen from "./components/loading-screen/LoadingScreen";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
+import Properties from "./components/properties/Properties";
 import React, { useState, useEffect } from "react";
 
 // Glavna komponenta aplikacije koja upravlja navigacijom i prikazom stranica
@@ -58,6 +59,7 @@ const AppContent = () => {
         <Route path="/our-agents" element={<OurAgents />} />
         <Route path="/agents/:id" element={<AgentDetail />} />
         <Route path="/countries-we-are-in" element={<CountriesWeAreIn />} />
+        <Route path="/properties" element={<Properties />} />
       </Routes>
 
       {/* Dugme za skrolovanje na vrh */}

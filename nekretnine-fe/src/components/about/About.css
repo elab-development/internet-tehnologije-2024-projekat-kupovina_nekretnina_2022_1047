@@ -116,6 +116,7 @@
 
 .breadcrumbs {
   font-size: 50px;
+  z-index: 100;
   margin-bottom: 10px;
   text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
   font-family: "Bebas Neue", sans-serif;

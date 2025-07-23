@@ -1,0 +1,280 @@
+.properties-container {
+  font-family: "Bebas Neue", sans-serif;
+  background: url("../../assets/background-agents.jpg") no-repeat center/cover;
+  color: white;
+  padding: 50px 20px;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.properties-title {
+  font-size: 85px;
+  text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+  margin-bottom: 30px;
+}
+
+.properties-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.search-input {
+  width: 300px;
+  padding: 12px;
+  border-radius: 50px;
+  border: 2px solid #fff;
+  background: #fff;
+  color: #000;
+  font-family: 'Space Grotesk';
+  box-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+  text-align: center;
+  transition: all 0.3s;
+}
+.search-input:focus,
+.search-input:hover {
+  background: #000;
+  color: #fff;
+  border-color: #fff;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  font-family: 'Space Grotesk';
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+.btn:hover {
+  transform: scale(1.05);
+  background: rgba(255,255,255,0.25);
+}
+
+.btn.outline {
+  background: transparent;
+  border: 2px solid #fff;
+}
+
+.create-form {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 10px;
+  width: 320px;
+  margin: 0 auto 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.create-form input {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  font-size: 16px;
+}
+
+.properties-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.property-card {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.3s, background 0.3s;
+  border-left: 5px solid #fff; /* overridden inline */
+}
+.property-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255,255,255,0.2);
+}
+
+.property-type {
+  font-family: 'Bebas Neue';
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.property-info p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Space Grotesk';
+  font-size: 16px;
+  margin: 6px 0;
+}
+
+.pagination {
+  margin-top: 30px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue';
+  font-size: 24px;
+}
+.pagination button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+.pagination button:hover:not(:disabled) {
+  transform: scale(1.05);
+  background: rgba(255,255,255,0.25);
+}
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.detail-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 1000;
+}
+
+.detail-popup {
+  background: #fff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px;
+  max-height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.detail-top-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: #333;
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.2s, transform 0.1s;
+}
+.detail-top-close:hover {
+  color: #000;
+  transform: scale(1.1);
+}
+
+.detail-image {
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+}
+
+.detail-info {
+  padding: 1.5rem;
+  font-family: 'Space Grotesk', sans-serif;
+  color: #333;
+}
+.detail-info h2 {
+  margin-top: 0;
+  font-size: 2rem;
+  font-family: 'Bebas Neue', sans-serif;
+}
+.detail-info p {
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.detail-model {
+  width: 100%;
+  height: 50vh;
+}
+.detail-model iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.purchase-form {
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.purchase-form h3 {
+  margin: 0;
+  font-family: 'Bebas Neue';
+  font-size: 24px;
+  color: #333;
+  text-align: left;
+}
+.purchase-form select,
+.purchase-form input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+/* BUY button: black background, white text */
+.purchase-btn {
+  background: #000 !important;
+  color: #fff !important;
+  border-radius: 50px;
+  padding: 10px;
+  font-weight: bold;
+}
+.purchase-btn:hover {
+  background: #222 !important;
+}
+
+.detail-close {
+  margin: 1rem auto 1.5rem;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 50px;
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.detail-close:hover {
+  background: rgba(0,0,0,1);
+  transform: translateY(-2px);
+}
+
+.error-message {
+  color: #ff6b6b;
+  margin-bottom: 20px;
+  font-family: 'Space Grotesk';
+}
