@@ -50,6 +50,7 @@ const Navbar = () => {
         <Link to="/our-agents" className="nav-link">Our Agents</Link>
         <Link to="/countries-we-are-in" className="nav-link">Our Locations</Link>
         <Link to="/properties" className="nav-link">Properties</Link>
+        <Link to="/my-purchases" className="nav-link">My Purchases</Link>
       </div>
 
       {user && (

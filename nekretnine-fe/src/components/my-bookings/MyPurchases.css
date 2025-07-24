@@ -1,0 +1,199 @@
+.purchases-container {
+  font-family: "Bebas Neue", sans-serif;
+  background: url("../../assets/background-agents.jpg") no-repeat center/cover;
+  color: white;
+  padding: 50px 20px;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.purchases-title {
+  font-size: 85px;
+  text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: #ff6b6b;
+  margin-bottom: 20px;
+  font-family: 'Space Grotesk';
+}
+
+.purchases-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.purchase-card {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 20px;
+  width: 320px;
+  text-align: left;
+  transition: transform 0.3s, background 0.3s;
+}
+.purchase-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255,255,255,0.2);
+}
+
+.purchase-property {
+  font-family: 'Bebas Neue';
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.purchase-card p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Space Grotesk';
+  font-size: 16px;
+  margin: 6px 0;
+}
+
+.purchase-status {
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+/* Pill styling */
+.status-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  margin-left: 6px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-family: 'Space Grotesk';
+}
+
+/* Yellow for pending */
+.status-badge.pending {
+  background: #E6B31E;
+  color: #000;
+}
+
+/* Red for canceled */
+.status-badge.canceled {
+  background: #FF4C4C;
+  color: #fff;
+}
+
+/* Green for completed */
+.status-badge.completed {
+  background: #1EE6B3;
+  color: #000;
+}
+
+.card-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.edit-btn,
+.delete-btn {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Space Grotesk';
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.edit-btn {
+  background: #1EE6B3;
+  color: #000;
+}
+.edit-btn:hover {
+  background: #16bfa1;
+}
+
+.delete-btn {
+  background: rgba(255,0,0,0.7);
+  color: #fff;
+}
+.delete-btn:hover {
+  background: rgba(255,0,0,1);
+}
+
+/* Modal overlay */
+.edit-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Modal box */
+.edit-modal {
+  background: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  color: #333;
+}
+
+/* Close button */
+.edit-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.edit-close:hover {
+  color: #000;
+}
+
+/* Form styling */
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+.edit-form label {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Space Grotesk';
+  font-size: 14px;
+}
+.edit-form input,
+.edit-form select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* Save button */
+.update-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 50px;
+  background: #000;
+  color: #fff;
+  font-family: 'Space Grotesk';
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.update-btn:hover {
+  background: #222;
+}

@@ -13,6 +13,7 @@ import LoadingScreen from "./components/loading-screen/LoadingScreen";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import Properties from "./components/properties/Properties";
+import MyPurchases from "./components/my-bookings/MyPurchases";
 import React, { useState, useEffect } from "react";
 
 // Glavna komponenta aplikacije koja upravlja navigacijom i prikazom stranica
@@ -60,6 +61,7 @@ const AppContent = () => {
         <Route path="/agents/:id" element={<AgentDetail />} />
         <Route path="/countries-we-are-in" element={<CountriesWeAreIn />} />
         <Route path="/properties" element={<Properties />} />
+        <Route path="/my-purchases" element={<MyPurchases />} />
       </Routes>
 
       {/* Dugme za skrolovanje na vrh */}

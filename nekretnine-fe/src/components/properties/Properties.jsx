@@ -6,6 +6,7 @@ import {
   FaBed,
   FaDollarSign
 } from 'react-icons/fa';
+import { Link } from "react-router-dom";
 import './Properties.css';
 
 const sketchfabUrls = [
@@ -178,6 +179,10 @@ const handleBuy = async (e) => {
 
   return (
     <div className="properties-container">
+
+       <nav className="breadcrumbs">
+        <Link to="/">Home</Link> / <span>Properties</span>
+      </nav>
       <h1 className="properties-title">Properties</h1>
 
       <div className="properties-controls">
