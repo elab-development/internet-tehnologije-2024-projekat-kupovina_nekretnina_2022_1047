@@ -12,7 +12,7 @@ const About = () => {
       {/* Section 1: Who Are We? */}
       <section className="about-section who-we-are">
             <nav className="breadcrumbs">
-              <Link to="/">Home</Link> / <span>About Us</span>
+              <Link to="/home">Home</Link> / <span>About Us</span>
             </nav>
         <div className="about-content">
           <h1>Who Are We?</h1>

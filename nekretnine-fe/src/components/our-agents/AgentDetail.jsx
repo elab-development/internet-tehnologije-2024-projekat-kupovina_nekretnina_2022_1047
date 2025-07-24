@@ -54,7 +54,7 @@ const AgentDetail = () => {
   return (
     <div className="agent-detail-container">
             <nav className="breadcrumbs">
-              <Link to="/">Home</Link> / <Link to="/our-agents">Our Agents</Link> / <span>Agent Details</span>
+              <Link to="/home">Home</Link> / <Link to="/our-agents">Our Agents</Link> / <span>Agent Details</span>
             </nav>
       <div className="agent-profile">
       <div className="agent-image">
