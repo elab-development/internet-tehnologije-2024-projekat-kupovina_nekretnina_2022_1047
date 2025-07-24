@@ -46,7 +46,7 @@ const OurAgents = () => {
   return (
     <div className="agents-container">
       <nav className="breadcrumbs">
-        <Link to="/">Home</Link> / <span>Our Agents</span>
+        <Link to="/home">Home</Link> / <span>Our Agents</span>
       </nav>
 
       <h1 className="agents-title">Meet Our Expert Agents</h1>

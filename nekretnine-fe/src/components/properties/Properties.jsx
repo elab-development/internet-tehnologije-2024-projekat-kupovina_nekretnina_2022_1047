@@ -181,7 +181,7 @@ const handleBuy = async (e) => {
     <div className="properties-container">
 
        <nav className="breadcrumbs">
-        <Link to="/">Home</Link> / <span>Properties</span>
+        <Link to="/home">Home</Link> / <span>Properties</span>
       </nav>
       <h1 className="properties-title">Properties</h1>
 
