@@ -20,7 +20,7 @@ const CountriesWeAreIn = () => {
   return (
     <div className="countries-container">
         <nav className="breadcrumbs">
-              <Link to="/">Home</Link> / <span>Our Locations</span>
+              <Link to="/home">Home</Link> / <span>Our Locations</span>
         </nav>
       <h1 className="countries-title">Countries We Operate In</h1>
       <div className="countries-list">

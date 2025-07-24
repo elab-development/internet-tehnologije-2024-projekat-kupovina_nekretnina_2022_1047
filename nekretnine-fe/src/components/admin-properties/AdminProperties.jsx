@@ -8,6 +8,7 @@ import {
   FaPlus
 } from 'react-icons/fa';
 import './AdminProperties.css';
+import { Link } from "react-router-dom";
 
 const accentFor = (type) => {
   switch (type.toLowerCase()) {
@@ -79,6 +80,9 @@ const AdminProperties = () => {
 
   return (
     <div className="admin-props-container">
+       <nav className="breadcrumbs">
+              <Link to="/admin-dashboard">Dashboard</Link> / <span>Manage Properties</span>
+        </nav>
       <h1 className="admin-props-title">Manage Properties</h1>
 
       <button

@@ -7,6 +7,7 @@ import {
   FaUserTie
 } from 'react-icons/fa';
 import './MyPurchases.css';
+import { Link } from "react-router-dom";
 
 // English label + Serbian value
 const statusOptions = [
@@ -110,6 +111,9 @@ const MyPurchases = () => {
 
   return (
     <div className="purchases-container">
+      <nav className="breadcrumbs">
+              <Link to="/home">Home</Link> / <span>My Purchases</span>
+        </nav>
       <h1 className="purchases-title">My Purchases</h1>
       {error && <div className="error-message">{error}</div>}
 
