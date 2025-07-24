@@ -1,0 +1,144 @@
+.admin-props-container {
+  font-family: 'Bebas Neue', sans-serif;
+  background: url('../../assets/background-agents.jpg') no-repeat center/cover;
+  background-attachment: fixed;
+  color: white;
+  padding: 50px 20px;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.admin-props-title {
+  font-size: 85px;
+  margin-bottom: 20px;
+  text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+}
+
+.create-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  font-family: 'Space Grotesk';
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.create-toggle-btn:hover {
+  background: rgba(255,255,255,0.25);
+  transform: scale(1.05);
+}
+
+.create-prop-form {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 360px;
+  margin: 0 auto 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.create-prop-form input {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  font-size: 16px;
+}
+
+.submit-btn {
+  padding: 12px 0;
+  border-radius: 50px;
+  border: none;
+  font-family: 'Space Grotesk';
+  font-weight: bold;
+  background: rgba(255,255,255,0.25);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.submit-btn:hover {
+  background: rgba(255,255,255,0.4);
+  transform: scale(1.05);
+}
+
+.admin-error {
+  color: #ff6b6b;
+  margin-bottom: 20px;
+  font-family: 'Space Grotesk';
+}
+
+.props-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.prop-card {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  text-align: left;
+  transition: background 0.3s, transform 0.2s;
+}
+.prop-card:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateY(-5px);
+}
+
+.prop-type {
+  font-family: 'Bebas Neue';
+  font-size: 24px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.prop-card p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Space Grotesk';
+  font-size: 16px;
+  margin: 6px 0;
+}
+
+.admin-pagination {
+  margin-top: 30px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Bebas Neue';
+  font-size: 24px;
+}
+
+.admin-pagination button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.admin-pagination button:hover:not(:disabled) {
+  background: rgba(255,255,255,0.25);
+  transform: scale(1.05);
+}
+.admin-pagination button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.admin-pagination span {
+  color: #fff;
+}
