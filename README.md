@@ -1,4 +1,4 @@
-## O Propertia
+## Propertia
 
 **Propertia** je savremena full-stack platforma za luksuzne nekretnine razvijena korišćenjem React-a na frontendu i Laravel-a na backend-u. Naš cilj je da redefinišemo način na koji kupci, agenti i administratori pristupaju i upravljaju nekretninama — od pretraživanja najmodernijih vila i penthausa, preko praćenja sopstvenih kupovina, do analize ukupnih podataka o transakcijama u realnom vremenu.
 
