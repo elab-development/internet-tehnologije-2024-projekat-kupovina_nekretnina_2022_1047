@@ -14,6 +14,7 @@ import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import Properties from "./components/properties/Properties";
 import MyPurchases from "./components/my-bookings/MyPurchases";
+import AdminDashboard from './components/admin-dashboard/AdminDashboard';
 import React, { useState, useEffect } from "react";
 
 // Glavna komponenta aplikacije koja upravlja navigacijom i prikazom stranica
@@ -62,6 +63,7 @@ const AppContent = () => {
         <Route path="/countries-we-are-in" element={<CountriesWeAreIn />} />
         <Route path="/properties" element={<Properties />} />
         <Route path="/my-purchases" element={<MyPurchases />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
       </Routes>
 
       {/* Dugme za skrolovanje na vrh */}

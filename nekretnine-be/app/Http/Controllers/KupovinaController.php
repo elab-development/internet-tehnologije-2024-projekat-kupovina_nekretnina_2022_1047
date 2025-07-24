@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Kupovina;
 use App\Http\Resources\KupovinaResource;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class KupovinaController extends Controller
 {
@@ -14,6 +15,13 @@ class KupovinaController extends Controller
     {
         if (!auth()->check() || auth()->user()->role !== 'buyer') {
             abort(403, 'Access denied. Only buyers can perform this action.');
+        }
+    }
+
+    private function authorizeAdmin()
+    {
+        if (!auth()->check() || auth()->user()->role !== 'admin') {
+            abort(403, 'Access denied. Only admins can view metrics.');
         }
     }
 
@@ -122,35 +130,41 @@ class KupovinaController extends Controller
         ]);
     }
 
-    /**
-     * Return aggregate statistics for the current user's purchases.
-     */
-    public function metrics(Request $request)
+   /**
+     * GET /api/kupovine/metrics
+     * only for admins
+    */
+    public function metrics()
     {
-        $this->authorizeBuyer();
+        $this->authorizeAdmin();
 
-        // load all of this user's purchases with related property price
-        $purchases = Kupovina::where('user_id', auth()->id())
-            ->with('nekretnina')
-            ->get();
+        // total number of purchases
+        $totalPurchases = Kupovina::count();
 
-        $totalCount   = $purchases->count();
-        $totalSpent   = $purchases->sum(fn($p) => $p->nekretnina->cena);
-        $byStatus     = $purchases
+        // total amount spent (sum of property prices)
+        $totalAmountSpent = DB::table('kupovine')
+            ->join('nekretnine', 'kupovine.nekretnina_id', '=', 'nekretnine.id')
+            ->sum('nekretnine.cena');
+
+        // number of purchases grouped by status_kupovine
+        $purchasesByStatus = DB::table('kupovine')
+            ->select('status_kupovine', DB::raw('count(*) as count'))
             ->groupBy('status_kupovine')
-            ->map(fn($group) => $group->count());
-        $byPayment    = $purchases
+            ->pluck('count', 'status_kupovine');
+
+        // number of purchases grouped by payment method
+        $purchasesByPayment = DB::table('kupovine')
+            ->select('nacinPlacanja', DB::raw('count(*) as count'))
             ->groupBy('nacinPlacanja')
-            ->map(fn($group) => $group->count());
+            ->pluck('count', 'nacinPlacanja');
 
         return response()->json([
-            'message' => 'Purchase metrics retrieved successfully!',
             'metrics' => [
-                'total_purchases'     => $totalCount,
-                'total_amount_spent'  => $totalSpent,
-                'purchases_by_status' => $byStatus,
-                'purchases_by_payment'=> $byPayment,
-            ],
-        ], 200);
+                'total_purchases'       => $totalPurchases,
+                'total_amount_spent'    => $totalAmountSpent,
+                'purchases_by_status'   => $purchasesByStatus,
+                'purchases_by_payment'  => $purchasesByPayment,
+            ]
+        ]);
     }
 }

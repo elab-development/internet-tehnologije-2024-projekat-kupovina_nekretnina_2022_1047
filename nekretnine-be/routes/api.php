@@ -20,13 +20,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::resource('nekretnine', NekretninaController::class)->only(['index','show', 'store']);
     Route::get('/pretraga-nekretnina', [NekretninaController::class, 'search']); 
-
+    
+    Route::get('/kupovine/metrics', [KupovinaController::class, 'metrics']);
     Route::get('/kupovine', [KupovinaController::class, 'index']); 
     Route::get('/kupovine/{id}', [KupovinaController::class, 'show']); 
     Route::post('/kupovine', [KupovinaController::class, 'store']); 
     Route::put('/kupovine/{id}', [KupovinaController::class, 'update']); 
     Route::delete('/kupovine/{id}', [KupovinaController::class, 'destroy']); 
 
-     Route::get('/kupovine/metrics', [KupovinaController::class, 'metrics']);
+    
 
 });

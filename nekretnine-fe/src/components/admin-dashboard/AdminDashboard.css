@@ -1,0 +1,88 @@
+.dashboard-container {
+  font-family: 'Bebas Neue', sans-serif;
+  background: url('../../assets/background-agents.jpg') no-repeat center/cover;
+  background-attachment: fixed;
+  color: white;
+  padding: 60px 20px;
+  min-height: 100vh;
+}
+
+.dashboard-container h1 {
+  text-align: center;
+  font-size: 85px;
+  margin-bottom: 40px;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+}
+
+.metrics-cards {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+.metric-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 30px 50px;
+  text-align: center;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.metric-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+.metric-card h2 {
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.metric-card p {
+  font-size: 36px;
+  margin: 0;
+}
+
+.charts {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: 60px;
+}
+
+.chart-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 20px;
+  width: 520px;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.chart-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+.chart-card h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+/* Loading & Error */
+.ad-loading,
+.ad-error {
+  font-family: 'Space Grotesk', sans-serif;
+  text-align: center;
+  font-size: 20px;
+  margin-top: 100px;
+}
+
+.ad-error {
+  color: #ff6b6b;
+}
