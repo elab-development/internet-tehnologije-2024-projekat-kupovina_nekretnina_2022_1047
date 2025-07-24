@@ -27,4 +27,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/kupovine/{id}', [KupovinaController::class, 'update']); 
     Route::delete('/kupovine/{id}', [KupovinaController::class, 'destroy']); 
 
+     Route::get('/kupovine/metrics', [KupovinaController::class, 'metrics']);
+
 });

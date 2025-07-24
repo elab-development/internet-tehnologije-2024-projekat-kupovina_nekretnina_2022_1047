@@ -121,4 +121,36 @@ class KupovinaController extends Controller
             'message' => 'Purchase deleted successfully!',
         ]);
     }
+
+    /**
+     * Return aggregate statistics for the current user's purchases.
+     */
+    public function metrics(Request $request)
+    {
+        $this->authorizeBuyer();
+
+        // load all of this user's purchases with related property price
+        $purchases = Kupovina::where('user_id', auth()->id())
+            ->with('nekretnina')
+            ->get();
+
+        $totalCount   = $purchases->count();
+        $totalSpent   = $purchases->sum(fn($p) => $p->nekretnina->cena);
+        $byStatus     = $purchases
+            ->groupBy('status_kupovine')
+            ->map(fn($group) => $group->count());
+        $byPayment    = $purchases
+            ->groupBy('nacinPlacanja')
+            ->map(fn($group) => $group->count());
+
+        return response()->json([
+            'message' => 'Purchase metrics retrieved successfully!',
+            'metrics' => [
+                'total_purchases'     => $totalCount,
+                'total_amount_spent'  => $totalSpent,
+                'purchases_by_status' => $byStatus,
+                'purchases_by_payment'=> $byPayment,
+            ],
+        ], 200);
+    }
 }
