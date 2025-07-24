@@ -8,12 +8,13 @@ import logo from "../../assets/logo.png";
 const Navbar = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [role, setRole] = useState(null);
 
   useEffect(() => {
-    const stored = sessionStorage.getItem('auth_user');
-    if (stored) {
-      setUser(JSON.parse(stored));
-    }
+    const storedUser = sessionStorage.getItem('auth_user');
+    const storedRole = sessionStorage.getItem('auth_role');
+    if (storedUser) setUser(JSON.parse(storedUser));
+    if (storedRole) setRole(storedRole);
   }, []);
 
   const handleLogout = async () => {
@@ -32,25 +33,34 @@ const Navbar = () => {
     }
   };
 
-  // first initial for avatar
   const initial = user?.name?.charAt(0).toUpperCase() || '';
+  const home = role === 'admin' ? '/admin' : '/home';
 
   return (
     <nav className="navbar">
       <div className="nav-brand">
-        <Link to="/home" className="nav-link">
+        <Link to={home} className="nav-link">
           <img src={logo} alt="propertia-logo" className="logo" />
           <span className="brand-name">Propertia</span>
         </Link>
       </div>
 
       <div className="nav-links">
-        <Link to="/home" className="nav-link">Home</Link>
-        <Link to="/about" className="nav-link">About Us</Link>
-        <Link to="/our-agents" className="nav-link">Our Agents</Link>
-        <Link to="/countries-we-are-in" className="nav-link">Our Locations</Link>
-        <Link to="/properties" className="nav-link">Properties</Link>
-        <Link to="/my-purchases" className="nav-link">My Purchases</Link>
+        {role === 'admin' ? (
+          <>
+            <Link to="/admin"            className="nav-link">Admin Dashboard</Link>
+            <Link to="/admin-properties" className="nav-link">Admin Properties</Link>
+          </>
+        ) : (
+          <>
+            <Link to="/home"               className="nav-link">Home</Link>
+            <Link to="/about"              className="nav-link">About Us</Link>
+            <Link to="/our-agents"         className="nav-link">Our Agents</Link>
+            <Link to="/countries-we-are-in" className="nav-link">Our Locations</Link>
+            <Link to="/properties"         className="nav-link">Properties</Link>
+            <Link to="/my-purchases"       className="nav-link">My Purchases</Link>
+          </>
+        )}
       </div>
 
       {user && (

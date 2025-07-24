@@ -26,7 +26,7 @@ const Login = () => {
       sessionStorage.setItem("auth_user", JSON.stringify(user));
       sessionStorage.setItem("auth_role", user.role || "buyer");
 
-      navigate("/home");
+      user.role === 'buyer' ? navigate("/home") : navigate("/admin-dashboard");
     } catch (err) {
       setError("Invalid credentials. Please try again.");
     }

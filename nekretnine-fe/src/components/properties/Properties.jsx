@@ -320,9 +320,9 @@ const handleBuy = async (e) => {
                 value={paymentMethod}
                 onChange={e=>setPaymentMethod(e.target.value)}
               >
-                <option value="Card">Card</option>
-                <option value="Cash">Cash</option>
-                <option value="Credit">Credit</option>
+                <option value="Platna kartica">Card</option>
+                <option value="Gotovina">Cash</option>
+                <option value="Kredit">Credit</option>
               </select>
               <button type="submit" className="btn purchase-btn">Buy</button>
             </form>
