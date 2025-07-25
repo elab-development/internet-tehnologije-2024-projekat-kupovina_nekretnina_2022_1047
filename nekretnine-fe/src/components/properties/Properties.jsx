@@ -30,8 +30,6 @@ const getAccentColor = (type) => {
 
 const Properties = () => {
   const token = sessionStorage.getItem('auth_token');
-  const user  = JSON.parse(sessionStorage.getItem('auth_user') || '{}');
-  const isAdmin = user.role === 'admin';
 
   const [properties, setProperties] = useState([]);
   const [pagination, setPagination] = useState({ current_page: 1, last_page: 1 });
@@ -40,16 +38,6 @@ const Properties = () => {
 
   const [searchType, setSearchType] = useState('');
   const [error, setError]           = useState('');
-
-  const [showCreate, setShowCreate] = useState(false);
-  const [newProp, setNewProp]       = useState({
-    vrstaNekretnine: '',
-    adresa: '',
-    grad: '',
-    povrsina: '',
-    brojSoba: '',
-    cena: ''
-  });
 
   const [detail, setDetail]     = useState(null);
   const [modelUrl, setModelUrl] = useState('');
@@ -165,18 +153,6 @@ const handleBuy = async (e) => {
   }
 };
 
-  const handleCreate = async (e) => {
-    e.preventDefault();
-    setError('');
-    try {
-      const r = await axios.post('http://localhost:8000/api/nekretnine', newProp);
-      setProperties([r.data.nekretnina, ...properties]);
-      setShowCreate(false);
-    } catch (e) {
-      setError(e.response?.data?.error || 'Creation failed.');
-    }
-  };
-
   return (
     <div className="properties-container">
 
@@ -195,43 +171,7 @@ const handleBuy = async (e) => {
         <button className="btn" onClick={handleSearch} style={{fontSize:'20px'}}>
           Search
         </button>
-        {isAdmin && (
-          <button className="btn outline" onClick={()=>setShowCreate(!showCreate)}>
-            {showCreate ? 'Cancel' : 'Add Property'}
-          </button>
-        )}
       </div>
-
-      {showCreate && isAdmin && (
-        <form className="create-form" onSubmit={handleCreate}>
-          {['Type','Address','City'].map((f,i)=>(
-            <input
-              key={i}
-              placeholder={f}
-              value={newProp[['vrstaNekretnine','adresa','grad'][i]]}
-              onChange={e=>setNewProp({
-                ...newProp,
-                [['vrstaNekretnine','adresa','grad'][i]]: e.target.value
-              })}
-              required
-            />
-          ))}
-          {['Area (m²)','Rooms','Price'].map((f,i)=>(
-            <input
-              key={i+3}
-              type="number"
-              placeholder={f}
-              value={newProp[['povrsina','brojSoba','cena'][i]]}
-              onChange={e=>setNewProp({
-                ...newProp,
-                [['povrsina','brojSoba','cena'][i]]: e.target.value
-              })}
-              required
-            />
-          ))}
-          <button type="submit" className="btn">Create</button>
-        </form>
-      )}
 
       {error && <div className="error-message">{error}</div>}
 
