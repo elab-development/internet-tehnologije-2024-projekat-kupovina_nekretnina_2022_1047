@@ -34,7 +34,7 @@ const Navbar = () => {
   };
 
   const initial = user?.name?.charAt(0).toUpperCase() || '';
-  const home = role === 'admin' ? '/admin' : '/home';
+  const home = role === 'admin' ? '/admin-dashboard' : '/home';
 
   return (
     <nav className="navbar">
@@ -48,7 +48,7 @@ const Navbar = () => {
       <div className="nav-links">
         {role === 'admin' ? (
           <>
-            <Link to="/admin"            className="nav-link">Admin Dashboard</Link>
+            <Link to="/admin-dashboard"            className="nav-link">Admin Dashboard</Link>
             <Link to="/admin-properties" className="nav-link">Admin Properties</Link>
           </>
         ) : (
