@@ -17,9 +17,9 @@ const statusOptions = [
 ];
 
 const paymentOptions = [
-  { label: 'Card',   value: 'Card' },
-  { label: 'Cash',   value: 'Cash' },
-  { label: 'Credit', value: 'Credit' }
+  { label: 'Card',   value: 'Platna kartica' },
+  { label: 'Cash',   value: 'Gotovina' },
+  { label: 'Credit', value: 'Kredit' }
 ];
 
 // Convert Serbian DB value → English label
