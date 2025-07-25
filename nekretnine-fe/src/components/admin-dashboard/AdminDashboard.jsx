@@ -63,9 +63,9 @@ const AdminDashboard = () => {
   const paymentData = Object.entries(metrics.purchases_by_payment || {}).map(
     ([method, count]) => ({
       label:
-        method === 'Card'   ? 'Card'
-      : method === 'Cash'   ? 'Cash'
-      : method === 'Credit' ? 'Credit'
+        method === 'Platna kartica'   ? 'Card'
+      : method === 'Gotovina'   ? 'Cash'
+      : method === 'Kredit' ? 'Credit'
       : method,
       count
     })
